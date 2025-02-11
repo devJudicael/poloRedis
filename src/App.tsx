@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "./components/Header";
-import { PoloCard } from "./components/PoloCard";
 import { PreorderModal } from "./components/PreorderModal";
 import { LandingPage } from "./components/LandingPage";
 import { OrderHistory } from "./components/OrderHistory";
+import { PoloCard } from "./components/PoloCard";
 import { Team } from "./components/Team";
 import type { Polo, CartItem } from "./types";
 
@@ -46,9 +47,6 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<"home" | "history" | "team">(
-    "home"
-  );
 
   const handleAddToCart = (
     color: string,
@@ -71,163 +69,163 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header
-        onCartClick={() => setIsCartOpen(true)}
-        onHistoryClick={() => setCurrentPage("history")}
-        onTeamClick={() => setCurrentPage("team")}
-        onHomeClick={() => setCurrentPage("home")}
-      />
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-50">
+        <Header onCartClick={() => setIsCartOpen(true)} />
 
-      <AnimatePresence mode="wait">
-        {currentPage === "home" && (
-          <motion.div
-            key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
-            <LandingPage />
-
-            <main className="container mx-auto px-4 py-12">
+        <Routes>
+          {/* Page d'accueil */}
+          <Route
+            path="/"
+            element={
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                  Notre Collection
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Découvrez nos polos de luxe et précommandez dès maintenant
-                </p>
-              </motion.div>
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}>
+                <LandingPage />
+                <main className="container mx-auto px-4 py-12">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                      Notre Collection
+                    </h2>
+                    <p className="text-xl text-gray-600">
+                      Découvrez nos polos de luxe et précommandez dès maintenant
+                    </p>
+                  </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {polos.map((polo) => (
-                  <PoloCard
-                    key={polo.id}
-                    polo={polo}
-                    onSelect={(polo) => {
-                      setSelectedPolo(polo);
-                      setIsModalOpen(true);
-                    }}
-                  />
-                ))}
-              </div>
-            </main>
-          </motion.div>
-        )}
-
-        {currentPage === "history" && (
-          <motion.div
-            key="history"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}>
-            <OrderHistory orders={cart} />
-          </motion.div>
-        )}
-
-        {currentPage === "team" && (
-          <motion.div
-            key="team"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}>
-            <Team />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {selectedPolo && (
-        <PreorderModal
-          polo={selectedPolo}
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          // onClose={() => {
-          //   setIsCartOpen(true);
-          // }}
-          onAddToCart={handleAddToCart}
-        />
-      )}
-
-      <AnimatePresence>
-        {isCartOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            className="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-xl z-50">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Panier</h2>
-                <button
-                  onClick={() => setIsCartOpen(false)}
-                  className="text-gray-500 hover:text-gray-700">
-                  Fermer
-                </button>
-              </div>
-
-              {cart.length === 0 ? (
-                <p className="text-gray-500 text-center">
-                  Votre panier est vide
-                </p>
-              ) : (
-                <div className="space-y-4">
-                  {/* Conteneur scrollable pour la liste des articles */}
-                  <div className="max-h-[350px] overflow-y-auto pr-2">
-                    {cart.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div>
-                          <h3 className="font-semibold">{item.polo.name}</h3>
-                          <p className="text-sm text-gray-600">
-                            {item.customerInfo.name}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            Taille: {item.size} | Couleur:{" "}
-                            <span
-                              style={{ backgroundColor: item.color }}
-                              className="h-4 w-4 rounded-full inline-block"></span>
-                            <span
-                              className={`bg-${item.color} h-12 w-12 rounded-full`}></span>
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            Quantité: {item.quantity}
-                          </p>
-                        </div>
-                        <p className="font-bold">
-                          {item.polo.price * item.quantity} FCFA
-                        </p>
-                      </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {polos.map((polo) => (
+                      <PoloCard
+                        key={polo.id}
+                        polo={polo}
+                        onSelect={(polo) => {
+                          setSelectedPolo(polo);
+                          setIsModalOpen(true);
+                        }}
+                      />
                     ))}
                   </div>
+                </main>
+              </motion.div>
+            }
+          />
 
-                  {/* Section totale et bouton de finalisation */}
-                  <div className="mt-6 border-t pt-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-semibold">Total</span>
-                      <span className="font-bold text-xl">
-                        {cart.reduce(
-                          (total, item) =>
-                            total + item.polo.price * item.quantity,
-                          0
-                        )}
-                        FCFA
-                      </span>
+          {/* Page Historique */}
+          <Route
+            path="/history"
+            element={
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}>
+                <OrderHistory orders={cart} />
+              </motion.div>
+            }
+          />
+
+          {/* Page Équipe */}
+          <Route
+            path="/team"
+            element={
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}>
+                <Team />
+              </motion.div>
+            }
+          />
+        </Routes>
+
+        {/* Modal de précommande */}
+        {selectedPolo && (
+          <PreorderModal
+            polo={selectedPolo}
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {/* Panier */}
+        <AnimatePresence>
+          {isCartOpen && (
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              className="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-xl z-50">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold">Panier</h2>
+                  <button
+                    onClick={() => setIsCartOpen(false)}
+                    className="text-gray-500 hover:text-gray-700">
+                    Fermer
+                  </button>
+                </div>
+
+                {cart.length === 0 ? (
+                  <p className="text-gray-500 text-center">
+                    Votre panier est vide
+                  </p>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="max-h-[350px] overflow-y-auto pr-2">
+                      {cart.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                          <div>
+                            <h3 className="font-semibold">{item.polo.name}</h3>
+                            <p className="text-sm text-gray-600">
+                              {item.customerInfo.name}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Taille: {item.size} | Couleur:{" "}
+                              <span
+                                style={{ backgroundColor: item.color }}
+                                className="h-4 w-4 rounded-full inline-block"></span>
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Quantité: {item.quantity}
+                            </p>
+                          </div>
+                          <p className="font-bold">
+                            {item.polo.price * item.quantity} FCFA
+                          </p>
+                        </div>
+                      ))}
                     </div>
 
-                    <button className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-                      Finaliser la précommande
-                    </button>
+                    <div className="mt-6 border-t pt-4">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="font-semibold">Total</span>
+                        <span className="font-bold text-xl">
+                          {cart.reduce(
+                            (total, item) =>
+                              total + item.polo.price * item.quantity,
+                            0
+                          )}
+                          FCFA
+                        </span>
+                      </div>
+
+                      <button className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+                        Finaliser la précommande
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </BrowserRouter>
   );
 }
 
