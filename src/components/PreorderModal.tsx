@@ -30,8 +30,11 @@ export const PreorderModal: React.FC<PreorderModalProps> = ({
     phone: "",
   });
 
+  // soumission du formulaire
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // fn passée en props avec les infos : couleur, taille, qty, infoUser
     onAddToCart(selectedColor, selectedSize, quantity, customerInfo);
     onClose();
   };
@@ -152,15 +155,29 @@ export const PreorderModal: React.FC<PreorderModalProps> = ({
                 <label className="block text-sm font-medium text-gray-700">
                   Quantité
                 </label>
-                <input
-                  type="number"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black"
-                />
-              </div>
+                <div className="mt-1 flex items-center gap-2">
+                  {/* Bouton "-" */}
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((prev) => Math.max(1, prev - 1))} // Décrémente la quantité, minimum 1
+                    className="px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                    -
+                  </button>
 
+                  {/* Affichage de la quantité */}
+                  <div className="px-4 py-2 bg-blue-400 rounded-md text-center text-white font-bold">
+                    {quantity}
+                  </div>
+
+                  {/* Bouton "+" */}
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((prev) => Math.min(5, prev + 1))} // Incrémente la quantité, maximum 5
+                    className="px-4 py-2 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                    +
+                  </button>
+                </div>
+              </div>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

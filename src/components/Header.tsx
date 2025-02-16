@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingCart, Menu, History, Users } from "lucide-react";
+import { ShoppingCart, History, Users, Shirt } from "lucide-react";
 
 // Définir le type des props
 interface HeaderProps {
@@ -17,13 +17,20 @@ export const Header: React.FC<HeaderProps> = ({ onCartClick }) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-4">
-            <Menu className="h-6 w-6 text-gray-600" />
+            {/* <Menu className="h-6 w-6 text-gray-600" /> */}
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
               Polo Redis
             </h1>
           </Link>
 
           <div className="flex items-center space-x-4 sm:space-x-6">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900">
+              <Shirt className="h-5 w-5" />
+              <span className="hidden sm:inline">Acceuil</span>
+            </Link>
+
             <Link
               to="/history"
               className="flex items-center space-x-2 text-gray-600 hover:text-gray-900">
