@@ -17,7 +17,6 @@ export const Header: React.FC<HeaderProps> = ({ onCartClick }) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2 sm:space-x-4">
-            {/* <Menu className="h-6 w-6 text-gray-600" /> */}
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
               Polo Redis
             </h1>
