@@ -31,7 +31,7 @@ export const LandingPage: React.FC = () => {
           transition={{ delay: 0.4 }}
           className="text-xl md:text-2xl text-center mb-12 max-w-2xl">
           Une collection de polos Redis stylés conçus pour les informaticiens,
-          où luxe et confort s'allient pour sublimer votre quotidien.
+          où luxe et confort s'allient pour optimiser votre quotidien.
         </motion.p>
 
         <motion.button
