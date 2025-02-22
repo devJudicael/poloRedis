@@ -1,47 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Header } from "./components/Header";
 import { PreorderModal } from "./components/PreorderModal";
 import { LandingPage } from "./components/LandingPage";
-import { OrderHistory } from "./components/OrderHistory";
-
+import useSnackStore from "./store/snack";
+import SnackNotif from "./components/ui/SnackNotif";
 import { Team } from "./components/Team";
-import type { Polo, CartItem } from "./types";
-import Cart from "./components/Cart";
+import type { Polo } from "./types";
+
 import { PoloItems } from "./PoloItems";
+
+import usePolosStore from "./store/client";
 
 function App() {
   const [selectedPolo, setSelectedPolo] = useState<Polo | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { message, severity } = useSnackStore();
 
-  const handleAddToCart = (
-    color: string,
-    size: string,
-    quantity: number,
-    customerInfo: { name: string; email: string; phone: string }
-  ) => {
-    if (selectedPolo) {
-      setCart([
-        ...cart,
-        {
-          polo: selectedPolo,
-          color,
-          size,
-          quantity,
-          customerInfo,
-        },
-      ]);
-    }
-  };
+  const { fetchPolos } = usePolosStore();
+
+  // Fetch les polos au montage du composant
+  useEffect(() => {
+    fetchPolos();
+  }, []);
 
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
+        {message !== "" && <SnackNotif severity={severity} message={message} />}
         {/** navbar */}
-        <Header onCartClick={() => setIsCartOpen(true)} />
+        <Header />
 
         <Routes>
           {/* Page d'accueil */}
@@ -78,19 +67,6 @@ function App() {
             }
           />
 
-          {/* Page Historique */}
-          <Route
-            path="/history"
-            element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}>
-                <OrderHistory orders={cart} />
-              </motion.div>
-            }
-          />
-
           {/* Page Équipe */}
           <Route
             path="/team"
@@ -111,16 +87,8 @@ function App() {
             polo={selectedPolo}
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
-            onAddToCart={handleAddToCart}
           />
         )}
-
-        {/* Panier */}
-        <AnimatePresence>
-          {isCartOpen && (
-            <Cart cart={cart} onClick={() => setIsCartOpen((prev) => !prev)} />
-          )}
-        </AnimatePresence>
       </div>
     </BrowserRouter>
   );

@@ -14,17 +14,17 @@ export const PoloCard: React.FC<PoloCardProps> = ({ polo, onSelect }) => {
       className="bg-white rounded-xl shadow-lg overflow-hidden">
       <div className="relative h-64">
         <img
-          src={polo.imageUrl}
-          alt={polo.name}
+          src={polo.img}
+          alt={polo.nom}
           className="w-full h-full object-cover"
         />
       </div>
       <div className="p-4">
-        <h3 className="text-xl font-semibold text-gray-900">{polo.name}</h3>
-        <p className="text-gray-600 mt-2">{polo.description}</p>
+        <h3 className="text-xl font-semibold text-gray-900">{polo.nom}</h3>
+        {/* <p className="text-gray-600 mt-2">{polo.description}</p> */}
         <div className="mt-4 flex justify-between items-center">
           <span className="text-2xl font-bold text-gray-900">
-            {polo.price} FCFA
+            {polo.prix} FCFA
           </span>
           <motion.button
             whileHover={{ scale: 1.05 }}

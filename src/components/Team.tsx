@@ -1,41 +1,72 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Linkedin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+
+import elogeimg from "../assets/elogepic.jpg";
+import judicaelimg from "../assets/judicaelpic.jpg";
+import younoussimg from "../assets/younousspic.jpg";
+import marcimg from "../assets/marcpic.jpg";
+import calixteimg from "../assets/calixtepic.jpg";
 
 const team = [
   {
-    name: 'Sophie Martin',
-    role: 'Designer Principal',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
-    bio: 'Passionnée par la mode et le design, Sophie apporte son expertise dans la création de nos collections.',
+    name: "Tinde Pehe Calixte",
+    role: "Développeur Frontend",
+    image: calixteimg,
+    bio: "Déloppement React , Tailwind , Zustand",
     social: {
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'mailto:sophie@example.com'
-    }
+      whatsapp: "https://wa.me/+22552767349",
+      linkedin:
+        "https://www.linkedin.com/in/tinde-p%C3%A9h%C3%A9-calixte-hassan-6a982b336",
+      email: "mailto:sophie@example.com",
+    },
   },
   {
-    name: 'Thomas Dubois',
-    role: 'Développeur Full Stack',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-    bio: 'Expert en développement web, Thomas a créé la plateforme de précommande en ligne.',
+    name: "Cakpo Judicael",
+    role: "Développeur Frontend",
+    image: judicaelimg,
+    bio: "Déloppement React , Tailwind , Zustand",
     social: {
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'mailto:thomas@example.com'
-    }
+      whatsapp: "https://wa.me/+2250564624366",
+      linkedin: "https://www.linkedin.com/in/judicael-cakpo-6907b32a0",
+      email: "mailto:thomas@example.com",
+    },
   },
   {
-    name: 'Marie Laurent',
-    role: 'Responsable Marketing',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
-    bio: 'Marie gère la stratégie marketing et la communication de notre marque.',
+    name: "Bamba Younouss",
+    role: "Développeur Backend",
+    image: younoussimg,
+    bio: "Développeur API PHP/Laravel",
     social: {
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'mailto:marie@example.com'
-    }
-  }
+      whatsapp: "https://wa.me/+22566293579",
+      linkedin: "https://www.linkedin.com/in/bamba-younouss-b63277314",
+      email: "mailto:marie@example.com",
+    },
+  },
+  {
+    name: "Bamidele Marc Emmanuel",
+    role: "Développeur Backend",
+    image: marcimg,
+    bio: "Développeur API PHP/Laravel",
+    social: {
+      whatsapp: "https://wa.me/+22540022693",
+      linkedin: "https://linkedin.com",
+      email: "mailto:marie@example.com",
+    },
+  },
+  {
+    name: "Kouhou Moneka Eloge",
+    role: "Développeur Backend",
+    image: elogeimg,
+    bio: "Développeur API PHP/Laravel",
+    social: {
+      whatsapp: "https://wa.me/+22540834531",
+      linkedin:
+        "https://www.linkedin.com/in/monneka-ange-eloge-kohou-143415327/",
+      email: "mailto:marie@example.com",
+    },
+  },
 ];
 
 export const Team: React.FC = () => {
@@ -44,8 +75,7 @@ export const Team: React.FC = () => {
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-4xl font-bold text-center mb-12"
-      >
+        className="text-4xl font-bold text-center mb-12">
         Notre Équipe
       </motion.h2>
 
@@ -56,8 +86,7 @@ export const Team: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-white rounded-xl shadow-lg overflow-hidden"
-          >
+            className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="aspect-w-1 aspect-h-1">
               <img
                 src={member.image}
@@ -69,17 +98,16 @@ export const Team: React.FC = () => {
               <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
               <p className="text-indigo-600 font-medium mb-4">{member.role}</p>
               <p className="text-gray-600 mb-6">{member.bio}</p>
-              
+
               <div className="flex justify-center space-x-4">
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  href={member.social.github}
+                  href={member.social.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  <Github className="h-5 w-5" />
+                  className="text-gray-600 hover:text-gray-900">
+                  <FaWhatsapp className="h-5 w-5" />
                 </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.1 }}
@@ -87,18 +115,16 @@ export const Team: React.FC = () => {
                   href={member.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
+                  className="text-gray-600 hover:text-gray-900">
                   <Linkedin className="h-5 w-5" />
                 </motion.a>
-                <motion.a
+                {/* <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   href={member.social.email}
-                  className="text-gray-600 hover:text-gray-900"
-                >
+                  className="text-gray-600 hover:text-gray-900">
                   <Mail className="h-5 w-5" />
-                </motion.a>
+                </motion.a> */}
               </div>
             </div>
           </motion.div>
@@ -106,4 +132,4 @@ export const Team: React.FC = () => {
       </div>
     </div>
   );
-}
+};

@@ -2,14 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
+import wlc from "../assets/wlc.jpeg";
+
 export const LandingPage: React.FC = () => {
   return (
     <div className="relative h-screen">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920)",
+          backgroundImage: `url(${wlc})`,
           backgroundAttachment: "fixed",
         }}>
         <div className="absolute inset-0 bg-black bg-opacity-50" />
