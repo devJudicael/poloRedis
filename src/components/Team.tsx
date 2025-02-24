@@ -12,9 +12,9 @@ import calixteimg from "../assets/calixtepic.jpg";
 const team = [
   {
     name: "Tinde Pehe Calixte",
-    role: "Développeur Frontend",
+    role: "Développement Frontend",
     image: calixteimg,
-    bio: "Déloppement React , Tailwind , Zustand",
+    bio: "Dévéloppeur React , Tailwind , Zustand",
     social: {
       whatsapp: "https://wa.me/+22552767349",
       linkedin:
@@ -24,9 +24,9 @@ const team = [
   },
   {
     name: "Cakpo Judicael",
-    role: "Développeur Frontend",
+    role: "Développement Frontend",
     image: judicaelimg,
-    bio: "Déloppement React , Tailwind , Zustand",
+    bio: "Dévéloppeur React , Tailwind , Zustand",
     social: {
       whatsapp: "https://wa.me/+2250564624366",
       linkedin: "https://www.linkedin.com/in/judicael-cakpo-6907b32a0",
@@ -35,7 +35,7 @@ const team = [
   },
   {
     name: "Bamba Younouss",
-    role: "Développeur Backend",
+    role: "Développement Backend",
     image: younoussimg,
     bio: "Développeur API PHP/Laravel",
     social: {
@@ -46,7 +46,7 @@ const team = [
   },
   {
     name: "Bamidele Marc Emmanuel",
-    role: "Développeur Backend",
+    role: "Développement Backend",
     image: marcimg,
     bio: "Développeur API PHP/Laravel",
     social: {
@@ -57,7 +57,7 @@ const team = [
   },
   {
     name: "Kouhou Moneka Eloge",
-    role: "Développeur Backend",
+    role: "Développement Backend",
     image: elogeimg,
     bio: "Développeur API PHP/Laravel",
     social: {

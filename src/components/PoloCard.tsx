@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 import type { Polo } from "../types";
 
 interface PoloCardProps {
@@ -18,9 +19,21 @@ export const PoloCard: React.FC<PoloCardProps> = ({ polo, onSelect }) => {
           alt={polo.nom}
           className="w-full h-full object-cover"
         />
+
+        {/* Exclusivité */}
+        <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-full flex items-center shadow-md">
+          <Star className="w-4 h-4 mr-1" />
+          <span className="text-xs font-semibold">Exclusivité</span>
+        </div>
       </div>
       <div className="p-4">
-        <h3 className="text-xl font-semibold text-gray-900">{polo.nom}</h3>
+        <section className="flex justify-between">
+          <h3 className="text-xl font-semibold text-gray-900">{polo.nom}</h3>
+          <div className=" bg-yellow-400 text-white px-2 py-1 rounded-full flex items-center shadow-md">
+            <Star className="w-4 h-4 mr-1" />
+            <span className="text-xs font-semibold">Exclusivité</span>
+          </div>
+        </section>
         {/* <p className="text-gray-600 mt-2">{polo.description}</p> */}
         <div className="mt-4 flex justify-between items-center">
           <span className="text-2xl font-bold text-gray-900">
@@ -30,7 +43,7 @@ export const PoloCard: React.FC<PoloCardProps> = ({ polo, onSelect }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onSelect(polo)}
-            className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+            className="px-4 py-2 bg-[#1e7394] text-white rounded-lg hover:bg-gray-800 transition-colors">
             Précommander
           </motion.button>
         </div>

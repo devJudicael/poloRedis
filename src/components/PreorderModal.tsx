@@ -231,7 +231,7 @@ export const PreorderModal: React.FC<PreorderModalProps> = ({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors border border-black">
+                  className="w-full py-3 font-bold bg-[#2b97c1] text-white rounded-lg hover:bg-gray-800 transition-colors border ">
                   Ajouter au panier - {polo.prix * quantity} FCFA
                 </motion.button>
               )}
@@ -242,7 +242,7 @@ export const PreorderModal: React.FC<PreorderModalProps> = ({
                   disabled={true}
                   loading
                   variant="contained"
-                  className="w-full py-3 text-white rounded-lg bg-black transition-colors border border-black">
+                  className="w-full py-3  text-white rounded-lg bg-[#34b6e8] transition-colors border border-black">
                   Submit
                 </Button>
               )}
