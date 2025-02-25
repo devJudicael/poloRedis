@@ -52,7 +52,7 @@ const team = [
     bio: "Développeur API PHP/Laravel",
     social: {
       whatsapp: "https://wa.me/+22540022693",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/emmanuel-bamidele-b63a49274",
       email: "mailto:marie@example.com",
     },
   },
