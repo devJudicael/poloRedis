@@ -105,7 +105,7 @@ export const Team: React.FC = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                href="#"
+                href="https://wa.me/22555294324"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900">
