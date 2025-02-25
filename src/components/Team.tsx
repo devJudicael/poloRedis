@@ -8,6 +8,7 @@ import judicaelimg from "../assets/judicaelpic.jpg";
 import younoussimg from "../assets/younousspic.jpg";
 import marcimg from "../assets/marcpic.jpg";
 import calixteimg from "../assets/calixtepic.jpg";
+import presiimg from "../assets/presipic.jpg";
 
 const team = [
   {
@@ -80,6 +81,49 @@ export const Team: React.FC = () => {
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/** Presi */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 * 0.1 }}
+          className="bg-white rounded-xl shadow-2xl overflow-hidden border-4 border-indigo-500 transform scale-105">
+          <div>
+            <img
+              src={presiimg}
+              alt="Président"
+              className="w-full h-[25rem] object-cover"
+            />
+          </div>
+          <div className="p-6">
+            <h3 className="text-2xl font-semibold mb-2">Boua Ange Désiré</h3>
+            <p className="text-indigo-600 font-medium mb-4">Président REDIS</p>
+            <p className="text-gray-600 mb-6">
+              Initiateur et coordonateur du projet
+            </p>
+
+            <div className="flex justify-center space-x-4">
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900">
+                <FaWhatsapp className="h-6 w-6" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900">
+                <Linkedin className="h-6 w-6" />
+              </motion.a>
+            </div>
+          </div>
+        </motion.div>
+
         {team.map((member, index) => (
           <motion.div
             key={member.name}
@@ -91,7 +135,7 @@ export const Team: React.FC = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-full h-64 object-cover"
+                className="w-full h-[25rem] object-cover"
               />
             </div>
             <div className="p-6">
@@ -118,13 +162,6 @@ export const Team: React.FC = () => {
                   className="text-gray-600 hover:text-gray-900">
                   <Linkedin className="h-5 w-5" />
                 </motion.a>
-                {/* <motion.a
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={member.social.email}
-                  className="text-gray-600 hover:text-gray-900">
-                  <Mail className="h-5 w-5" />
-                </motion.a> */}
               </div>
             </div>
           </motion.div>
