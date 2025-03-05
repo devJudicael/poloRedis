@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 import elogeimg from "../assets/elogepic.jpg";
@@ -105,13 +105,13 @@ export const Team: React.FC = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                href="https://wa.me/22555294324"
+                href="mailto:bouazanged@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900">
-                <FaWhatsapp className="h-6 w-6" />
+                <Mail className="h-6 w-6" />
               </motion.a>
-              <motion.a
+              {/* <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 href="#"
@@ -119,7 +119,7 @@ export const Team: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900">
                 <Linkedin className="h-6 w-6" />
-              </motion.a>
+              </motion.a> */}
             </div>
           </div>
         </motion.div>

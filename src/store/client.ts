@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { fetchPolos, postCommand } from "../services/client"; // Assure-toi que cet import est correct
 import { Polo, CommandPolo } from "../types"; // Assure-toi d'avoir un type Polo défini
+import useSnackStore from "./snack";
 
 // Définition du type du store
 interface PolosStore {
@@ -27,6 +28,11 @@ const usePolosStore = create<PolosStore>((set) => ({
 
       set({ polos, loadingFtPl: false });
     } catch (error) {
+      useSnackStore.setState({
+        message: "impossible de recuperer les polos",
+        severity: "error",
+      });
+
       set({
         errorMessage: "Erreur lors du chargement des polos",
       });
@@ -42,6 +48,10 @@ const usePolosStore = create<PolosStore>((set) => ({
     try {
       await postCommand(data);
     } catch (error) {
+      useSnackStore.setState({
+        message: "Une erreur est survenue ",
+        severity: "error",
+      });
       set({
         errorMessage: "Erreur lors de la commande",
       });

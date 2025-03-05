@@ -9,7 +9,7 @@ interface PoloItemsProps {
 }
 
 export const PoloItems: React.FC<PoloItemsProps> = ({ onSelect }) => {
-  const { loadingFtPl, polos } = usePolosStore();
+  const { loadingFtPl, polos, errorMessage } = usePolosStore();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-center max-w-4xl mx-auto">
@@ -22,9 +22,11 @@ export const PoloItems: React.FC<PoloItemsProps> = ({ onSelect }) => {
         </>
       )}
       {!loadingFtPl &&
-        polos.map((polo) => (
+        polos?.map((polo) => (
           <PoloCard key={polo.id} polo={polo} onSelect={() => onSelect(polo)} />
         ))}
+
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };
