@@ -232,7 +232,7 @@ export const PreorderModal: React.FC<PreorderModalProps> = ({
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   className="w-full py-3 font-bold bg-[#2b97c1] text-white rounded-lg hover:bg-gray-800 transition-colors border ">
-                  Ajouter au panier - {polo.prix * quantity} FCFA
+                  Enregistrer la commande - {polo.prix * quantity} FCFA
                 </motion.button>
               )}
 

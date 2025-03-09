@@ -30,7 +30,7 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         {message !== "" && <SnackNotif severity={severity} message={message} />}
         {/** navbar */}
-        <Header />
+        {/* <Header /> */}
 
         <Routes>
           {/* Page d'accueil */}
@@ -41,6 +41,7 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}>
+                <Header />
                 <LandingPage />
                 <main className="container mx-auto px-4 py-12">
                   <motion.div
@@ -75,7 +76,22 @@ function App() {
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}>
+                <Header />
                 <Team />
+              </motion.div>
+            }
+          />
+
+          {/** Page 404 */}
+          <Route
+            path="*"
+            element={
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="container mx-auto px-4 py-12 text-center">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">404</h2>
+                <p className="text-xl text-gray-600">Page non trouvée</p>
               </motion.div>
             }
           />

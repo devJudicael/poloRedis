@@ -4,7 +4,7 @@ import { CommandPolo } from "../types";
 // API endpoint
 
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log(apiUrl);
+// console.log(apiUrl);
 
 // recuperer les polos
 export const fetchPolos = async () => {
